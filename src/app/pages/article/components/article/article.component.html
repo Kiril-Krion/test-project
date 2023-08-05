@@ -1,0 +1,12 @@
+<div *ngIf="articleData" class="article">
+  <img class="article-image" [src]="articleData.imageUrl" alt="image">
+
+  <div class="article-content">
+    <h1 class="article-title">{{ articleData.title }}</h1>
+    <p class="article-subtitle">{{ articleData.summary }}</p>
+  </div>
+
+  <button (click)="goBack()" mat-button>Back to homepage</button>
+</div>
+
+<h3 *ngIf="!articleData">Loading...</h3>

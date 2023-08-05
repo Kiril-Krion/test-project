@@ -1,0 +1,25 @@
+<p class="filter-title">Filter by keywords</p>
+<mat-form-field class="input">
+  <mat-icon matPrefix>search</mat-icon>
+  <input matInput [(ngModel)]="searchTerm" (input)="filterArticles()" placeholder="The most successful IT companies in 2020">
+</mat-form-field>
+
+<h4 *ngIf="filteredArticles" class="result-title">Result {{ filteredArticles.length }}</h4>
+<div class="divide"></div>
+
+<div class="cards">
+  <mat-card *ngFor="let articles of filteredArticles" class="example-card">
+    <img class="card-image" [src]="articles.imageUrl" alt="image">
+    <mat-card-content>
+      <p class="card-date"><mat-icon>calendar_today</mat-icon> {{ formatDate(articles.publishedAt) }}</p>
+      <h1 class="card-title">{{ articles.title }}</h1>
+      <p class="card-subtitle">{{ articles.summary }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [routerLink]="'article/' + articles.id" class="read-button" mat-button>Read More</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div *ngIf="filteredArticles?.length === 0">Not data yet....</div>
+<h3 *ngIf="!filteredArticles">Loading...</h3>
